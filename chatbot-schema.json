@@ -1,0 +1,564 @@
+the/nudge
+-----------
+users(students)
+--------
+id
+firstName
+lastName
+email
+mobile
+dob
+fatherName
+address
+motherName
+password
+educationQualifications: [
+	{
+		education
+		passingYear,
+		board/university,
+		Percentage,
+		stream,
+		sequence:1
+	}
+]
+
+profileRoles
+-------
+{	id,
+	title: "Accountant"
+},
+{	id,
+	title: "Software Engineer"
+},
+{	id,
+	title: "Customer Service Representative"
+},
+{	id,
+	title: "Retail Sales Associate"
+},
+{	id,
+	title: "Others"
+}
+
+resumeitems need to be filled
+--------------------------
+name,
+contact,
+photo,
+title/role,
+Objective/Summary
+Experience
+skills
+Educational Qualifications - Your academic background,
+Project
+Certification
+Honors and awards
+
+
+experience resume
+------------------
+name,
+contact,
+photo,
+title/role,
+Objective/Summary
+Experience
+skills
+Educational Qualifications - Your academic background,
+
+(Additionally, you can consider these optional sections)
+Project
+Certification
+Honors and awards
+(Choose any 2 sections that are most relevant for you")
+
+
+experience fresher
+------------------
+name,
+contact,
+photo,
+title/role,
+Objective/Summary
+Educational Qualifications - Your academic achievements.
+Skills
+
+(Rishita: "Additionally, you can consider these optional sections:)
+Internships & Projects
+Certifications
+Honors and Awards
+(Choose those that are most relevant for you")
+
+
+
+buildResumeRule
+-----------
+{
+	id:"212212",
+	start: "Welcome to <>. Let's start making your 'Personal Details' impressive",
+	steps: [
+		{
+			step:1,
+			stepTitle: "Contact info",
+			isFilled: "",
+			reveal:"Time to reveal the first completed section!",
+			message: "",
+			choice: {}
+			replyMessage: {},
+			errorMessage:"",
+			instruction: {}
+			fields: [
+				{
+					title: "name",
+					message: "Can you provide your full name (eg. Rishita Hegde)",
+					sequence:1,
+					replyMessage:"",
+					errorMessage:"",
+					choice:{},
+					isCorrect: "",
+					roleIds: [],
+					experince: "",
+					required: true
+				},
+				{
+					title: "phoneNumber",
+					message: "How should any recruiter contact you? Can you give me your phone number",
+					sequence:2,
+					replyMessage:"",
+					errorMessage:"",
+					choice:{},
+					isCorrect: "",
+					roleIds: [],
+					experince: "",
+					required: true
+				},
+				{
+					title: "email",
+					message: "Your email address is also vital for recruiter communication. Avoid using unprofessional addresses like coolguy123@email.com.",
+					sequence:3,
+					replyMessage:"",
+					errorMessage:"",
+					choice:{},
+					isCorrect: "",
+					roleIds: [],
+					experince: "",
+					required: true
+				},
+				{
+					title: "LinkedIn profile",
+					message: "Do you have any LinkedIn profile, website or bio you want to add?"
+					choice: [yes:"", no:"", type:"radio"],
+					sequence:4,
+					replyMessage:"",
+					errorMessage:"",
+					isCorrect: "",
+					roleIds: [],
+					experince: "",
+					required: true
+				}
+			]
+		},  
+		{
+			step:2,
+			stepTitle: "Role selection",
+			isFilled: true,
+			reveal:"",
+			message: "",
+			choice: {}
+			replyMessage: {},
+			errorMessage:"",
+			instruction: {}
+			fields: [
+				{
+					title: "Role",
+					message: "Fantastic! So which role are you interested in applying for?",
+					replyMessage: "Got it! What's your preferred role?",
+					errorMessage:"Once we add your dream role, we’ll let you know! For now select one of the listed roles, so that you are empowered to master resume-building.",
+					choice: {
+								"continue": "", "later":"",type: "radio"
+							},
+					correctRole: "",
+					roleIds: [1,2,3,4,5],
+					sequence: 1,
+					experince: "",
+					required: true
+				}
+			]
+		},
+		{
+			step:3,
+			stepTitle: "Experienced/Fresher selection",
+			isFilled: true,
+			reveal:"",
+			message: "Awesome choice! Now, are you an experienced professional or a fresher?",
+			choice: {
+						fresher:"", 
+						experience:"",
+						type: radio
+					}
+			replyMessage: {
+			  {
+			    experience: "Excellent! As someone with experience, your resume should focus on your job-specific expertise and notable achievements."
+			  },
+			  {
+			    fresher: "No worries! Starting fresh is exciting. A fresher's resume focuses on educational background, skills, and potential"
+			  }
+		  },
+			errorMessage:"",
+			instruction: {
+							experience: {
+								experience: "experience",
+								requiredFieldMessage: "The 4 must-haves for your resume are",
+								requiredFields: ["Objective/Summary", "Work Experience", "Skills", "Educational Qualifications"],
+								requiredCount:4,
+								optionalFieldMessage: "Choose any 2 sections that are most relevant for you",
+								optionalFields: ["Projects", "Certifications", "Honors and Awards"],
+								optionalCount:2
+							},
+							fresher: {
+								fresher: "fresher",
+								requiredFieldMessage: "The 3 must-haves for your resume are",
+								requiredFields: ["Objective/Summary", "Skills", "Educational Qualifications"],
+								requiredCount:3,
+								optionalFieldMessage:"Choose those that are most relevant for you",
+								optionalFields: ["Internships & Projects", "Certifications", "Honors and Awards"],
+								optionalCount: 2
+							}
+						}
+			fields: [
+				{
+					title: "Objective/Summary",
+					message: "A snapshot of your career goals and top accomplishments",
+					sequence: 1,
+					experince: "experince",
+					required: true
+					replyMessage:"",
+					errorMessage:"",
+					isCorrect: "",
+					roleIds: [],
+					experince: "",
+				},
+				{
+					title: "Work Experience",
+					message: "Your job history and achievements.",
+					sequence: 2,
+					experince: "experince",
+					required: true,
+					replyMessage:"",
+					errorMessage:"",
+					isCorrect: "",
+					roleIds: [],
+					experince: "",
+				},
+				{
+					title: "Skills",
+					message: "Specialized talents and proficiencies.",
+					sequence: 3,
+					experince: "experince",
+					required: true,
+					replyMessage:"",
+					errorMessage:"",
+					isCorrect: "",
+					roleIds: [],
+					experince: "",
+				},
+				{
+					title: "Educational Qualifications",
+					message: "Your academic background.",
+					sequence: 4,
+					experince: "experince",
+					required: true,
+					replyMessage:"",
+					errorMessage:"",
+					isCorrect: "",
+					roleIds: [],
+					experince: "",
+				},
+				{
+					title: "Projects",
+					message: "To showcase major initiatives or projects.",
+					sequence: 1,
+					experince: "experince",
+					required: false,
+					replyMessage:"",
+					errorMessage:"",
+					isCorrect: "",
+					roleIds: [],
+					experince: "",
+				},
+				{
+					title: "Certifications",
+					message: "To highlight any extra qualifications.",
+					sequence: 2,
+					experince: "experince",
+					required: false,
+					replyMessage:"",
+					errorMessage:"",
+					isCorrect: "",
+					roleIds: [],
+					experince: "",
+				},
+				{
+					title: "Honors and Awards",
+					message: "To underscore your excellence.",
+					sequence: 3,
+					experince: "experince",
+					required: false,
+					replyMessage:"",
+					errorMessage:"",
+					isCorrect: "",
+					roleIds: [],
+					experince: "",
+				},
+
+				{
+					title: "Objective/Summary",
+					message: "A snapshot of your career goals and top accomplishments",
+					sequence: 1,
+					experince: "fresher",
+					required: true,
+					replyMessage:"",
+					errorMessage:"",
+					isCorrect: "",
+					roleIds: [],
+					experince: "",
+				},
+				{
+					title: "Skills",
+					message: "Specialized talents and proficiencies.",
+					sequence: 2,
+					experince: "fresher",
+					required: true,
+					replyMessage:"",
+					errorMessage:"",
+					isCorrect: "",
+					roleIds: [],
+					experince: "",
+				},
+				{
+					title: "Educational Qualifications",
+					message: "Your academic background.",
+					sequence: 3,
+					experince: "fresher",
+					required: true
+					replyMessage:"",
+					errorMessage:"",
+					isCorrect: "",
+					roleIds: [],
+					experince: "",
+				},
+				{
+					title: "Internships & Projects",
+					message: "To showcase major initiatives or projects.",
+					sequence: 1,
+					experince: "fresher",
+					required: false
+					replyMessage:"",
+					errorMessage:"",
+					isCorrect: "",
+					roleIds: [],
+					experince: "",
+				},
+				{
+					title: "Certifications",
+					message: "To highlight any extra qualifications.",
+					sequence: 2,
+					experince: "fresher",
+					required: false,
+					replyMessage:"",
+					errorMessage:"",
+					isCorrect: "",
+					roleIds: [],
+					experince: "",
+				},
+				{
+					title: "Honors and Awards",
+					message: "To underscore your excellence.",
+					sequence: 3,
+					experince: "fresher",
+					required: false,
+					replyMessage:"",
+					errorMessage:"",
+					isCorrect: "",
+					roleIds: [],
+					experince: "",
+				}
+			]
+		}
+	]
+}
+
+
+
+userResume
+----------
+{
+	id,
+	userId,
+	buildResumeRuleId,
+	experience: "experience",
+	steps: [
+		{
+			step:1,
+			stepId: 1,
+			isReveled: "",
+			completed: true,
+			fields: [
+						{
+							fieldId: 21212,
+							isCorrect: "",
+							required: true,
+							isFilled: "true",
+							title: "name",
+							titleValue: ["K.S. Manjunath"],
+							sequence:1			
+						},
+						{
+							fieldId: 21213,
+							isCorrect: "",
+							required: true,
+							isFilled: "true"
+							title: "phoneNumber",
+							titleValue: ["123450000"],
+							sequence:2
+						},
+						{
+							fieldId: 21214,
+							isCorrect: "",
+							required: true,
+							isFilled: "true"
+							title: "email",
+							titleValue:["k@gmail.com"],
+							sequence:3
+						},
+						{
+							fieldId: 21215,
+							isCorrect: "",
+							required: true,
+							isFilled: "true"
+							title: "linkedIn",
+							titleValue: ["https://linkedincom/ks123"],
+							sequence:4
+						}
+					]
+		},
+		{
+			step:2
+			stepId: 2,
+			isReveled: "",
+			completed: true,
+			fields: [
+						{
+							fieldId: 11211,
+							isCorrect: "",
+							required: true,
+							isFilled: "true"
+							title: "role",
+							titleValue: ["Accountant"],
+							sequence:1
+						}
+					]
+		},
+		{
+			step:3
+			stepId: 3,
+			isReveled: "",
+			completed: "",
+			fields: [
+						{
+							fieldId: 11221,
+							isCorrect: "",
+							required: true,
+							isFilled: "true"
+							title: "Objective/Summary",
+							titleValue: ["Proficient in a variety of platforms, language and database."],
+							sequence:1
+						},
+						{
+							fieldId: 11222,
+							isCorrect: "",
+							required: true,
+							isFilled: "true"
+							title: "Work Experience",
+							titleValue: ["Software Engineer (Full Stack Web Developer) with more than 5 years"],
+							sequence:2
+						},
+						{
+							fieldId: 11223,
+							isCorrect: "",
+							required: true,
+							isFilled: "true"
+							title: "Skills",
+							titleValue: ["Tally", "Financial calendar", "Invoicing software"],
+							sequence:3
+						},
+						{
+							fieldId: 11224,
+							isCorrect: "",
+							required: true,
+							isFilled: "true"
+							title: "Educational Qualifications",
+							titleValue: ["M-tech in cs", "B-tech in cs", "12th UP board", "10th CBSE board"],
+							sequence:4
+						},
+						{
+							fieldId: 11225,
+							isCorrect: "",
+							required: true,
+							isFilled: "true"
+							title: "Projects",
+							titleValue: ["Project1", "Project2", "Project3"],
+							sequence:5
+						},
+						{
+							fieldId: 11226,
+							isCorrect: "",
+							required: true,
+							isFilled: "true"
+							title: "Certifications",
+							titleValue: ["Scaler fullstack"],
+							sequence:6
+						},
+						{
+							fieldId: 11227,
+							isCorrect: "",
+							required: true,
+							isFilled: "true"
+							title: "Honors and Awards",
+							titleValue: ["cricket"],
+							sequence:7
+						}
+					]
+		}
+	]
+}
+
+
+
+
+userConversation: 
+--------------------
+
+
+
+chat history
+
+trying times
+
+
+chatBot
+
+
+Profile Canvas->
+1. Accountant
+2. Software Engineer
+3. Customer Service Representative
+4. Retail Sales Associate
+5. Others
+
+
+Conversation: Career Objective or Career Summary
+1. introduction
+2. Brainstorming with
+3. review and feedback
