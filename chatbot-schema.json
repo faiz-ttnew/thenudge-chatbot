@@ -100,6 +100,7 @@ buildResumeRule
 	steps: [
 		{
 			step:1,
+			tag:"personalInfo"
 			stepTitle: "Contact info",
 			isFilled: "",
 			reveal:"Time to reveal the first completed section!",
@@ -115,11 +116,15 @@ buildResumeRule
 					sequence:1,
 					replyMessage:"",
 					errorMessage:"",
-					choice:{},
-					isCorrect: "",
+					choice:[],
 					roleIds: [],
+					correctRole:[],
 					experince: "",
-					required: true
+					required: true,
+					payload: {
+					  title: "name"
+					  titleValue: [],
+					}
 				},
 				{
 					title: "phoneNumber",
@@ -127,11 +132,15 @@ buildResumeRule
 					sequence:2,
 					replyMessage:"",
 					errorMessage:"",
-					choice:{},
-					isCorrect: "",
+					choice:[],
 					roleIds: [],
+					correctRole: []
 					experince: "",
-					required: true
+					required: true,
+					payload: {
+					  title: "phoneNumber"
+					  titleValue: [],
+					}
 				},
 				{
 					title: "email",
@@ -139,28 +148,55 @@ buildResumeRule
 					sequence:3,
 					replyMessage:"",
 					errorMessage:"",
-					choice:{},
-					isCorrect: "",
+					choice:[
+					    {
+					      message: "Do you already have one? Or would you like to create a new one?"
+					    },
+  					  {
+  					    continue: "",
+  					    create:""
+  					    type: "radio"
+  					  }
+					  ],
 					roleIds: [],
+					correctRole:[],
 					experince: "",
-					required: true
+					required: true,
+					payload: {
+					  title: "email"
+					  titleValue: [],
+					}
 				},
 				{
 					title: "LinkedIn profile",
 					message: "Do you have any LinkedIn profile, website or bio you want to add?"
-					choice: [yes:"", no:"", type:"radio"],
+					choice: [
+					  {
+					    yes:"",
+					    no:"",
+					    type:"radio"
+					  },
+					  {
+					    replyMessage: {yes: "Perfect! Put the link here", no:""}
+					  }
+					],
 					sequence:4,
 					replyMessage:"",
 					errorMessage:"",
-					isCorrect: "",
 					roleIds: [],
+					correctRole:[],
 					experince: "",
-					required: true
+					required: false,
+					payload: {
+					  title: "socialLink"
+					  titleValue: [],
+					}
 				}
 			]
 		},  
 		{
 			step:2,
+			tag:"roleSelection"
 			stepTitle: "Role selection",
 			isFilled: true,
 			reveal:"",
@@ -175,14 +211,37 @@ buildResumeRule
 					message: "Fantastic! So which role are you interested in applying for?",
 					replyMessage: "Got it! What's your preferred role?",
 					errorMessage:"Once we add your dream role, we’ll let you know! For now select one of the listed roles, so that you are empowered to master resume-building.",
-					choice: {
-								"continue": "", "later":"",type: "radio"
-							},
-					correctRole: "",
-					roleIds: [1,2,3,4,5],
+					choice: [],
+					correctRole: [
+					  {success: true},
+					  {
+					    success: false,
+					    errorMessage:"Once we add your dream role, we’ll let you know! For now select one of the listed roles, so that you are empowered to master resume-building.",
+					    choice: [
+    					  {
+    					    "continue": "",
+    					    "later":"",
+    					    type: "radio"
+    						},
+    					],
+					  }
+					],
+					roleIds: [
+					  {apiCall:"yes"},
+					  {type: "radio",}
+					  {roleId:1, title: "Accountant"},
+					  {roleId:2, title: "Software Engineer"},
+					  {roleId:3, title: "Customer Service Representative"},
+					  {roleId:4, title: "Retail Sales Associate"},
+					  {roleId:5, title: "Others"}
+					],
 					sequence: 1,
 					experince: "",
-					required: true
+					required: true,
+					payload: {
+					  title: "role"
+					  titleValue: [],
+					}
 				}
 			]
 		},
@@ -235,9 +294,13 @@ buildResumeRule
 					required: true
 					replyMessage:"",
 					errorMessage:"",
-					isCorrect: "",
+					choice:[],
 					roleIds: [],
-					experince: "",
+					correctRole: [],
+					payload: {
+					  title: "Objective/Summary",
+					  titleValue:[]
+					}
 				},
 				{
 					title: "Work Experience",
@@ -247,9 +310,13 @@ buildResumeRule
 					required: true,
 					replyMessage:"",
 					errorMessage:"",
-					isCorrect: "",
+					choice:[],
 					roleIds: [],
-					experince: "",
+					correctRole: [],
+					payload: {
+					  title: "Work Experience",
+					  titleValue:[]
+					}
 				},
 				{
 					title: "Skills",
@@ -259,9 +326,13 @@ buildResumeRule
 					required: true,
 					replyMessage:"",
 					errorMessage:"",
-					isCorrect: "",
+					choice:[],
 					roleIds: [],
-					experince: "",
+          correctRole: [],
+					payload: {
+					  title: "Skills",
+					  titleValue:[]
+					}
 				},
 				{
 					title: "Educational Qualifications",
@@ -271,9 +342,13 @@ buildResumeRule
 					required: true,
 					replyMessage:"",
 					errorMessage:"",
-					isCorrect: "",
+					choice:[],
 					roleIds: [],
-					experince: "",
+					correctRole: [],
+					payload: {
+					  title: "Educational Qualifications",
+					  titleValue:[]
+					}
 				},
 				{
 					title: "Projects",
@@ -283,9 +358,13 @@ buildResumeRule
 					required: false,
 					replyMessage:"",
 					errorMessage:"",
-					isCorrect: "",
+					choice:[],
 					roleIds: [],
-					experince: "",
+					correctRole: [],
+					payload: {
+					  title: "Projects",
+					  titleValue:[]
+					}
 				},
 				{
 					title: "Certifications",
@@ -295,9 +374,13 @@ buildResumeRule
 					required: false,
 					replyMessage:"",
 					errorMessage:"",
-					isCorrect: "",
+					choice:[],
 					roleIds: [],
-					experince: "",
+					correctRole: [],
+					payload: {
+					  title: "Certifications",
+					  titleValue:[]
+					}
 				},
 				{
 					title: "Honors and Awards",
@@ -307,9 +390,13 @@ buildResumeRule
 					required: false,
 					replyMessage:"",
 					errorMessage:"",
-					isCorrect: "",
+					choice:[],
 					roleIds: [],
-					experince: "",
+					correctRole: [],
+					payload: {
+					  title: "Honors and Awards",
+					  titleValue:[]
+					}
 				},
 
 				{
@@ -320,9 +407,13 @@ buildResumeRule
 					required: true,
 					replyMessage:"",
 					errorMessage:"",
-					isCorrect: "",
+					choice:[],
 					roleIds: [],
-					experince: "",
+					correctRole: [],
+					payload: {
+					  title: "Objective/Summary",
+					  titleValue:[]
+					}
 				},
 				{
 					title: "Skills",
@@ -332,9 +423,13 @@ buildResumeRule
 					required: true,
 					replyMessage:"",
 					errorMessage:"",
-					isCorrect: "",
+					choice:[],
 					roleIds: [],
-					experince: "",
+					correctRole: [],
+					payload: {
+					  title: "Skills",
+					  titleValue:[]
+					}
 				},
 				{
 					title: "Educational Qualifications",
@@ -344,9 +439,13 @@ buildResumeRule
 					required: true
 					replyMessage:"",
 					errorMessage:"",
-					isCorrect: "",
+					choice:[],
 					roleIds: [],
-					experince: "",
+					correctRole: [],
+					payload: {
+					  title: "Educational Qualifications",
+					  titleValue:[]
+					}
 				},
 				{
 					title: "Internships & Projects",
@@ -356,9 +455,13 @@ buildResumeRule
 					required: false
 					replyMessage:"",
 					errorMessage:"",
-					isCorrect: "",
+					choice:[],
 					roleIds: [],
-					experince: "",
+					correctRole: [],
+					payload: {
+					  title: "Internships & Projects",
+					  titleValue:[]
+					}
 				},
 				{
 					title: "Certifications",
@@ -368,9 +471,13 @@ buildResumeRule
 					required: false,
 					replyMessage:"",
 					errorMessage:"",
-					isCorrect: "",
+					choice:[],
 					roleIds: [],
-					experince: "",
+					correctRole: [],
+					payload: {
+					  title: "Certifications",
+					  titleValue:[]
+					}
 				},
 				{
 					title: "Honors and Awards",
@@ -380,9 +487,13 @@ buildResumeRule
 					required: false,
 					replyMessage:"",
 					errorMessage:"",
-					isCorrect: "",
+					choice:[],
 					roleIds: [],
-					experince: "",
+					correctRole: [],
+					payload: {
+					  title: "Honors and Awards",
+					  titleValue:[]
+					}
 				}
 			]
 		}
@@ -402,7 +513,7 @@ userResume
 		{
 			step:1,
 			stepId: 1,
-			isReveled: "",
+			isRevealed: "",
 			completed: true,
 			fields: [
 						{
@@ -433,12 +544,12 @@ userResume
 							sequence:3
 						},
 						{
-							fieldId: 21215,
+							fieldId: "21215",
 							isCorrect: "",
-							required: true,
-							isFilled: "true"
-							title: "linkedIn",
-							titleValue: ["https://linkedincom/ks123"],
+							required: "true",
+							isFilled: "true",
+							title: "socialLink",
+							titleValue: ['https://www.Linkedin.com/skdd'],
 							sequence:4
 						}
 					]
@@ -446,7 +557,7 @@ userResume
 		{
 			step:2
 			stepId: 2,
-			isReveled: "",
+			isRevealed: "",
 			completed: true,
 			fields: [
 						{
@@ -463,7 +574,7 @@ userResume
 		{
 			step:3
 			stepId: 3,
-			isReveled: "",
+			isRevealed: "",
 			completed: "",
 			fields: [
 						{
